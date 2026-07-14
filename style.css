@@ -1,11 +1,11 @@
-/* Base Style Parameters & Root Variables */
+/* Base Layout Configuration Variables & Design Token Metrics */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
-    user-select: none; /* Disables casual text selection highlighting */
+    user-select: none;
 }
 
 :root {
@@ -16,6 +16,8 @@
     --border-color: #eeeeee;
     --input-bg: #f5f5f5;
     --overlay-bg: rgba(0, 0, 0, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.25);
     --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -26,6 +28,8 @@ body.dark-theme {
     --border-color: #222222;
     --input-bg: #1e1e1e;
     --overlay-bg: rgba(0, 0, 0, 0.7);
+    --glass-bg: rgba(20, 20, 20, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.05);
 }
 
 body {
@@ -34,61 +38,47 @@ body {
     overflow-x: hidden;
 }
 
-/* Header Navbar Config */
-header {
+/* Glassmorphism Notification Toast Animation Block Engine UI styling Rules */
+.glass-toast {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(var(--bg-color), 0.85);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--border-color);
-}
-
-.navbar {
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    padding: 16px 32px;
+    border-radius: 50px;
+    z-index: 5000;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    flex-direction: column;
+    overflow: hidden;
+    width: 90%;
+    max-width: 450px;
 }
 
+.glass-toast.active { top: 30px; }
+.toast-content-wrapper { display: flex; align-items: center; gap: 15px; font-weight: 500; font-size: 14px; color: var(--text-color); }
+.toast-content-wrapper i { color: var(--accent); font-size: 18px; }
+.toast-progress-bar { height: 3px; background: var(--accent); width: 100%; position: absolute; bottom: 0; left: 0; transition: width linear; }
+
+/* Header & Currency Switcher Styling Rules Layout */
+header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(var(--bg-color), 0.85); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); }
+.navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 20px; }
 .logo { font-size: 26px; font-weight: 700; letter-spacing: 1px; }
 .logo span { color: var(--accent); }
 .nav-icons { display: flex; align-items: center; gap: 20px; }
+.theme-toggle, .cart-icon, .wishlist-icon, .auth-icon, .admin-shield-btn, .currency-trigger { cursor: pointer; font-size: 18px; position: relative; transition: var(--transition); }
+.currency-trigger { font-size: 12px; background: var(--input-bg); padding: 5px 10px; border-radius: 4px; border: 1px solid var(--border-color); }
+.theme-toggle:hover, .cart-icon:hover, .wishlist-icon:hover, .auth-icon:hover, .admin-shield-btn:hover, .currency-trigger:hover { color: var(--accent); }
 
-.theme-toggle, .cart-icon, .wishlist-icon, .auth-icon {
-    cursor: pointer;
-    font-size: 18px;
-    position: relative;
-    transition: var(--transition);
-}
+.cart-count, .wishlist-count { position: absolute; top: -10px; right: -10px; background: var(--accent); color: #fff; font-size: 9px; padding: 2px 5px; border-radius: 50%; font-weight: 700; }
+#user-status-text { font-size: 12px; font-weight: 600; margin-left: 5px; }
 
-.theme-toggle:hover, .cart-icon:hover, .wishlist-icon:hover, .auth-icon:hover {
-    color: var(--accent);
-}
-
-.cart-count, .wishlist-count {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: var(--accent);
-    color: #fff;
-    font-size: 9px;
-    padding: 2px 5px;
-    border-radius: 50%;
-    font-weight: 700;
-}
-
-#user-status-text {
-    font-size: 12px;
-    font-weight: 600;
-    margin-left: 5px;
-}
-
-/* Hero UI Module Layout */
+/* Hero Graphic System Module Panel Canvas Configuration Layout Rules */
 .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 120px 20px 40px 20px; gap: 40px; }
 .hero-content { flex: 1; }
 .hero-tagline { font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: 600; display: block; margin-bottom: 15px; }
@@ -96,11 +86,12 @@ header {
 .hero-content p { font-size: 16px; opacity: 0.8; margin-bottom: 35px; line-height: 1.6; }
 .btn { display: inline-block; padding: 14px 35px; background: var(--text-color); color: var(--bg-color); text-decoration: none; font-weight: 600; border-radius: 4px; transition: var(--transition); border: 1px solid var(--text-color); cursor: pointer; text-align: center; }
 .btn:hover { background: transparent; color: var(--text-color); transform: translateY(-2px); }
+.btn-secondary-variant { background: transparent; color: var(--text-color); border: 1px solid var(--border-color); }
 .hero-image { flex: 1; position: relative; display: flex; justify-content: center; }
 .hero-image img { max-width: 80%; border-radius: 8px; z-index: 2; box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
 .glow-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; height: 400px; background: var(--accent); filter: blur(100px); opacity: 0.15; border-radius: 50%; z-index: 1; }
 
-/* Filter Controls Container */
+/* Filter System Controls Interface Panels Box layout Rules */
 .controls-container { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 50px; gap: 20px; }
 .search-box { position: relative; width: 300px; }
 .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
@@ -109,7 +100,7 @@ header {
 .filter-btn { padding: 8px 18px; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); cursor: pointer; border-radius: 30px; transition: var(--transition); }
 .filter-btn.active, .filter-btn:hover { background: var(--text-color); color: var(--bg-color); border-color: var(--text-color); }
 
-/* Main Dynamic Product Catalog Section Grid */
+/* Main Dynamic Product Cards Layout Section Grid Rules styling */
 .products-section { max-width: 1200px; margin: 60px auto; padding: 0 20px; }
 .section-title { font-size: 32px; margin-bottom: 40px; text-align: center; }
 .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; }
@@ -121,58 +112,20 @@ header {
 .product-card:hover .hover-overlay { opacity: 1; }
 .quick-view-btn { padding: 10px 20px; background: #fff; color: #111; border: none; font-weight: 600; border-radius: 4px; cursor: pointer; }
 
-/* Custom Floating Wishlist Heart Icon Style Badge */
-.wishlist-heart-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 10;
-    width: 36px;
-    height: 36px;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 16px;
-    color: var(--text-color);
-    transition: var(--transition);
-}
-
-.wishlist-heart-btn.active {
-    color: #ff4d4d;
-    background: #fff;
-}
-
+.wishlist-heart-btn { position: absolute; top: 15px; right: 15px; z-index: 10; width: 36px; height: 36px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--text-color); transition: var(--transition); }
+.wishlist-heart-btn.active { color: #ff4d4d; background: #fff; }
 .product-info { padding: 20px; text-align: center; }
 .product-info h3 { font-size: 16px; margin-bottom: 8px; font-weight: 600; }
 .price { color: var(--accent); font-weight: 700; margin-bottom: 15px; }
 .add-to-cart-btn { width: 100%; padding: 10px 0; background: transparent; color: var(--text-color); border: 1px solid var(--text-color); cursor: pointer; font-weight: 600; transition: var(--transition); }
 .add-to-cart-btn:hover { background: var(--text-color); color: var(--bg-color); }
 
-/* Sliding Sidebar Panels Configuration Engine */
-.cart-sidebar, .wishlist-sidebar {
-    position: fixed;
-    top: 0;
-    right: -400px;
-    width: 400px;
-    height: 100%;
-    background: var(--card-bg);
-    border-left: 1px solid var(--border-color);
-    z-index: 2000;
-    transition: var(--transition);
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-}
-
+/* Sliding Sidebar Overlay Drawer Modules */
+.cart-sidebar, .wishlist-sidebar { position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background: var(--card-bg); border-left: 1px solid var(--border-color); z-index: 2000; transition: var(--transition); padding: 30px; display: flex; flex-direction: column; }
 .cart-sidebar.open, .wishlist-sidebar.open { right: 0; }
 .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; }
 .close-cart { cursor: pointer; font-size: 20px; }
 .cart-items { flex: 1; overflow-y: auto; padding: 20px 0; }
-
 .cart-item-card { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
 .cart-item-card img { width: 65px; height: 65px; object-fit: cover; border-radius: 4px; }
 .item-details { flex: 1; }
@@ -180,48 +133,30 @@ header {
 .item-details p { font-size: 13px; color: var(--accent); font-weight: 600; }
 .remove-item-btn { background: transparent; border: none; color: #ff4d4d; cursor: pointer; font-size: 14px; }
 
-/* Promo Code Discount Grid Block Styling */
-.promo-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-    border-top: 1px solid var(--border-color);
-    padding-top: 15px;
-}
-
-.promo-container input {
-    flex: 1;
-    padding: 10px 12px;
-    border: 1px solid var(--border-color);
-    background: var(--input-bg);
-    color: var(--text-color);
-    border-radius: 4px;
-    outline: none;
-}
-
-.promo-container button {
-    padding: 0 15px;
-    background: var(--text-color);
-    color: var(--bg-color);
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-#promo-msg-feedback {
-    font-size: 12px;
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-
+/* Coupons Box Input Blocks Framework */
+.promo-container { display: flex; gap: 10px; margin-bottom: 15px; border-top: 1px solid var(--border-color); padding-top: 15px; }
+.promo-container input { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); background: var(--input-bg); color: var(--text-color); border-radius: 4px; outline: none; }
+.promo-container button { padding: 0 15px; background: var(--text-color); color: var(--bg-color); border: none; font-weight: 600; cursor: pointer; border-radius: 4px; }
+#promo-msg-feedback { font-size: 12px; margin-bottom: 15px; font-weight: 500; }
 .cart-total-box { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; opacity: 0.9; }
 .final-total-line { font-weight: 700; font-size: 18px; margin-top: 10px; border-top: 1px dashed var(--border-color); padding-top: 10px; opacity: 1; }
 .checkout-btn { width: 100%; padding: 14px; background: var(--accent); color: #fff; border: none; font-weight: 600; cursor: pointer; border-radius: 4px; }
 .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay-bg); backdrop-filter: blur(5px); z-index: 1500; display: none; }
 .cart-overlay.open { display: block; }
 
-/* Quick View Modal & Reviews System Styling Layout */
+/* Contact Forms Working Section Suite Interface Elements UI Config */
+.contact-section-wrapper { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
+.contact-inner-grid { display: flex; gap: 50px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.03); }
+.contact-info-card { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.contact-info-card h3 { font-size: 28px; margin-bottom: 15px; font-weight: 700; }
+.contact-info-card p { font-size: 14px; opacity: 0.7; margin-bottom: 30px; line-height: 1.6; }
+.meta-info-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 14px; }
+.meta-info-row i { color: var(--accent); width: 20px; }
+.contact-form-wrap { flex: 1.2; }
+.contact-form-wrap textarea { width: 100%; padding: 12px 15px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 6px; outline: none; font-family: inherit; resize: none; }
+.contact-form-wrap textarea:focus { border-color: var(--accent); }
+
+/* Quick View Modals Layout Architecture */
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--overlay-bg); backdrop-filter: blur(5px); z-index: 1500; display: none; }
 .modal-overlay.open { display: block; }
 .modal-box { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 850px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; z-index: 2100; padding: 40px; display: none; max-height: 90vh; overflow-y: auto; }
@@ -235,37 +170,30 @@ header {
 .modal-price { font-size: 20px; font-weight: 700; color: var(--accent); margin-bottom: 15px; }
 .modal-desc { font-size: 13px; opacity: 0.7; line-height: 1.6; margin-bottom: 20px; }
 
-/* Interactive Product Ratings Layout Engine */
-.modal-reviews-section {
-    border-top: 1px solid var(--border-color);
-    padding-top: 15px;
-    margin-bottom: 25px;
-}
-
+.modal-reviews-section { border-top: 1px solid var(--border-color); padding-top: 15px; margin-bottom: 25px; }
 .modal-reviews-section h4 { font-size: 14px; margin-bottom: 8px; }
 .interactive-stars { margin-bottom: 12px; color: var(--accent); cursor: pointer; display: flex; align-items: center; gap: 5px; }
 .interactive-stars span { font-size: 12px; color: var(--text-color); opacity: 0.6; margin-left: 5px; }
-
 .reviews-list-container { max-height: 130px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; padding-right: 5px; }
 .review-item-row { background: var(--input-bg); padding: 10px; border-radius: 6px; font-size: 12px; }
 .review-item-row header { position: static; background: transparent; border: none; display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 4px; padding: 0; }
 .review-item-row p { opacity: 0.8; line-height: 1.4; }
 
-/* User Premium Authentication Modal Layout System */
-.auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); z-index: 2500; display: none; align-items: center; justify-content: center; }
-.auth-overlay.open { display: flex; }
+/* Authentication Modal Frames Custom System styling */
+.auth-overlay, .admin-auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); z-index: 2500; display: none; align-items: center; justify-content: center; }
+.auth-overlay.open, .admin-auth-overlay.open { display: flex; }
 .auth-modal-box { background: var(--card-bg); border: 1px solid var(--border-color); width: 90%; max-width: 420px; padding: 40px 30px; border-radius: 12px; position: relative; }
 .close-auth { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 18px; opacity: 0.6; }
 .auth-modal-box h2 { font-size: 22px; font-weight: 700; margin-bottom: 5px; text-align: center; }
 .auth-subtitle { font-size: 13px; opacity: 0.6; margin-bottom: 25px; text-align: center; }
-.auth-action-btn { width: 100%; padding: 13px; background: var(--text-color); color: var(--bg-color); border: 1px solid var(--text-color); border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+.auth-action-btn { width: 100%; padding: 13px; background: var(--text-color); color: var(--bg-color); border: 1px solid var(--text-color); border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 10px; text-align: center; }
 .switch-auth-link { font-size: 13px; text-align: center; margin-top: 20px; opacity: 0.8; }
 .switch-auth-link span { color: var(--accent); font-weight: 600; cursor: pointer; text-decoration: underline; }
 
-/* Fake Payment System Modal Overlay Container */
-.payment-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); z-index: 3000; display: none; }
-.payment-overlay.open { display: flex; align-items: center; justify-content: center; }
-.payment-modal-box { background: var(--card-bg); border: 1px solid var(--border-color); width: 90%; max-width: 450px; padding: 40px 30px; border-radius: 16px; position: relative; }
+/* Fake Financial Gateway Multi-stage Module Configurations */
+.payment-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); z-index: 3000; display: none; overflow-y: auto; padding: 40px 0; }
+.payment-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+.payment-modal-box { background: var(--card-bg); border: 1px solid var(--border-color); width: 90%; max-width: 600px; padding: 40px 30px; border-radius: 16px; position: relative; margin: auto; }
 .close-payment { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 18px; opacity: 0.6; }
 .payment-modal-box h2 { font-size: 22px; font-weight: 700; margin-bottom: 5px; }
 .payment-subtitle { font-size: 13px; opacity: 0.6; margin-bottom: 20px; }
@@ -279,18 +207,58 @@ header {
 .pay-now-btn { width: 100%; padding: 14px; background: var(--text-color); color: var(--bg-color); border: 1px solid var(--text-color); border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 10px; }
 .pay-now-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-.payment-state-view { text-align: center; padding: 30px 0; }
+.payment-state-view { text-align: center; padding: 20px 0; width: 100%; }
 .spinner { width: 50px; height: 50px; border: 4px solid var(--border-color); border-top: 4px solid var(--accent); border-radius: 50%; margin: 0 auto 20px auto; animation: spin 1s linear infinite; }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 .success-icon-wrap { font-size: 60px; color: #2ec4b6; margin-bottom: 15px; }
 
-/* Mobile Viewport Fix Adjustments Rules (Fully Optimized) */
+/* Premium Invoice Grid Render Layout Engine Design System styling Rules */
+.premium-invoice-card-wrapper { background: #fff; color: #111; border: 2px solid #111; border-radius: 8px; padding: 30px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.invoice-branding-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #111; padding-bottom: 15px; margin-bottom: 20px; }
+.invoice-branding-row .inv-logo { font-size: 24px; font-weight: 700; }
+.invoice-branding-row .inv-logo span { color: #c5a850; }
+.invoice-branding-row .inv-title { font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+.invoice-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 13px; margin-bottom: 25px; line-height: 1.5; }
+.invoice-items-table { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
+.invoice-items-table th { background: #111; color: #fff; text-align: left; padding: 8px; font-size: 12px; text-transform: uppercase; }
+.invoice-items-table td { border-bottom: 1px solid #ddd; padding: 10px 8px; font-size: 13px; }
+.invoice-totals-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; font-size: 13px; font-weight: 500; border-top: 1px dashed #111; padding-top: 15px; }
+.invoice-totals-wrap .inv-final-bold { font-size: 16px; font-weight: 700; color: #c5a850; margin-top: 5px; }
+
+/* Protected Workspace Manager Admin Panel Dashboard Architecture */
+.admin-dashboard-canvas-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); z-index: 4000; display: none; overflow-y: auto; padding: 40px 20px; }
+.admin-dashboard-canvas-overlay.open { display: block; }
+.admin-canvas-container { max-width: 1200px; margin: 0 auto; }
+.admin-canvas-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 20px; margin-bottom: 35px; }
+.admin-canvas-header h2 { font-size: 22px; font-weight: 700; color: var(--accent); }
+.close-admin-canvas { background: #ff4d4d; color: #fff; border: none; padding: 10px 20px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: var(--transition); }
+.close-admin-canvas:hover { opacity: 0.9; }
+.admin-grid-layout-split { display: flex; flex-direction: column; gap: 40px; }
+.admin-panel-card-table-block { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+.admin-panel-card-table-block h3 { font-size: 16px; margin-bottom: 20px; border-left: 4px solid var(--accent); padding-left: 10px; text-transform: uppercase; letter-spacing: 1px; }
+.table-scroll-wrap { width: 100%; overflow-x: auto; }
+.admin-data-table { width: 100%; border-collapse: collapse; text-align: left; }
+.admin-data-table th { padding: 12px; background: var(--input-bg); font-size: 12px; text-transform: uppercase; opacity: 0.8; border-bottom: 2px solid var(--border-color); }
+.admin-data-table td { padding: 15px 12px; border-bottom: 1px solid var(--border-color); font-size: 13px; }
+.admin-action-mini-btn { padding: 5px 12px; background: var(--text-color); color: var(--bg-color); border: none; font-size: 11px; font-weight: 600; border-radius: 4px; cursor: pointer; }
+
+/* Dynamic Print CSS Engine Adjustments Rules Configuration */
+@media print {
+    body * { visibility: hidden; background: #fff !important; color: #000 !important; }
+    .no-print { display: none !important; }
+    #payment-overlay, #payment-overlay *, #print-area-invoice-container-target, #print-area-invoice-container-target * { visibility: visible; }
+    #payment-overlay { position: absolute; top: 0; left: 0; width: 100%; height: auto; background: #fff !important; }
+    .payment-modal-box { border: none !important; box-shadow: none !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+}
+
+/* Mobile Layout Responsive Adjustments Rules Suite */
 @media (max-width: 991px) {
     .hero { flex-direction: column-reverse; text-align: center; padding-top: 130px; }
     .hero-content h1 { font-size: 38px; }
     .modal-body { flex-direction: column; }
     .modal-img-wrap { height: 220px; position: static; }
     .modal-box { top: 5%; transform: translate(-50%, 0); max-height: 90vh; }
+    .contact-inner-grid { flex-direction: column; gap: 30px; padding: 20px; }
 }
 
 @media (max-width: 768px) {

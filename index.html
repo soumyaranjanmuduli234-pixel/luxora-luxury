@@ -3,47 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxora Premium | Elite Security Suite</title>
+    <title>Luxora Premium | Enterprise Suite</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- EmailJS SDK Integration Module -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="light-theme">
 
+    <!-- Modern Glassmorphism Dynamic Toast Container Notification System -->
+    <div id="glass-toast-notification" class="glass-toast">
+        <div class="toast-content-wrapper">
+            <i id="toast-icon-indicator" class="fas fa-info-circle"></i>
+            <span id="toast-message-text">System operational logs cleared.</span>
+        </div>
+        <div class="toast-progress-bar"></div>
+    </div>
+
+    <!-- Header / Navbar Layout Grid -->
     <header>
         <div class="navbar">
             <div class="logo">Luxora<span>.</span></div>
             <div class="nav-icons">
-                <div class="theme-toggle" id="theme-btn"><i class="fas fa-moon"></i></div>
+                <div class="theme-toggle" id="theme-btn" title="Toggle Theme Layout"><i class="fas fa-moon"></i></div>
+                <!-- AI Feature Drop: Currency Converter Node -->
+                <div class="currency-trigger" id="currency-toggle-node" title="Switch Multi Currency Matrix"><b>USD ($)</b></div>
+                <!-- Auth Trigger Action Gateway Link -->
                 <div class="auth-icon" id="auth-btn-trigger"><i class="far fa-user"></i> <span id="user-status-text">Login</span></div>
+                <!-- Wishlist Panel Trigger Container -->
                 <div class="wishlist-icon" id="wishlist-btn-trigger">
                     <i class="far fa-heart"></i>
                     <span class="wishlist-count">0</span>
                 </div>
+                <!-- Cart Overlay Bag Node Toggle -->
                 <div class="cart-icon" id="cart-btn">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count">0</span>
                 </div>
+                <!-- Protected Admin Portal Portal Control Interface Access Button -->
+                <div class="admin-shield-btn" id="admin-portal-gate-trigger" title="Secure Manager Dashboard Portal Console"><i class="fas fa-shield-halved"></i></div>
             </div>
         </div>
     </header>
 
+    <!-- Hero UI Introduction Panel Element -->
     <section id="home" class="hero">
         <div class="hero-content" data-aos="fade-right" data-aos-duration="1200">
-            <span class="hero-tagline">Secure Premium Platform 2026</span>
-            <h1>Redefining Modern Luxury</h1>
+            <span class="hero-tagline">Secure Enterprise Framework 2026</span>
+            <h1>Redefining Modern Luxury Cataloging</h1>
             <p>Explore an elite curation of fashion statements crafted for those who command presence wherever they step.</p>
             <a href="#shop" class="btn">Explore Shop <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="hero-image" data-aos="zoom-in" data-aos-duration="1500">
             <div class="glow-circle"></div>
-            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600&auto=format&fit=crop" alt="Hero Model">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600&auto=format&fit=crop" alt="Hero Model Graphic Element">
         </div>
     </section>
 
+    <!-- Shop Dynamic Product Grid Layout Section -->
     <section id="shop" class="products-section">
-        <h2 class="section-title" data-aos="fade-up">Curated Collection</h2>
+        <h2 class="section-title" data-aos="fade-up">Curated Dynamic Catalog</h2>
         
         <div class="controls-container" data-aos="fade-up">
             <div class="search-box">
@@ -51,7 +75,7 @@
                 <input type="text" id="search-input" placeholder="Search elite products...">
             </div>
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn active" data-filter="all">All Items</button>
                 <button class="filter-btn" data-filter="jacket">Jackets</button>
                 <button class="filter-btn" data-filter="sneakers">Sneakers</button>
                 <button class="filter-btn" data-filter="accessory">Accessories</button>
@@ -61,6 +85,37 @@
         <div class="product-grid" id="product-container"></div>
     </section>
 
+    <!-- Premium Live EmailJS Working Contact Section Container Layer -->
+    <section id="contact" class="contact-section-wrapper" data-aos="fade-up">
+        <div class="contact-inner-grid">
+            <div class="contact-info-card">
+                <h3>Get In Touch</h3>
+                <p>Have structural design catalog inquiries or enterprise operations processing configurations? Reach out to us instantly.</p>
+                <div class="meta-info-row"><i class="fas fa-user-tie"></i> <span><b>Director:</b> Soumyaranjan Muduli</span></div>
+                <div class="meta-info-row"><i class="fas fa-phone-alt"></i> <span><b>Mobile:</b> +91 7325996774</span></div>
+                <div class="meta-info-row"><i class="fas fa-envelope"></i> <span><b>Secure Mail:</b> soumyaranjanmuduli234@gmail.com</span></div>
+            </div>
+            <div class="contact-form-wrap">
+                <form id="live-emailjs-contact-form">
+                    <div class="form-group">
+                        <label>Your Full Name</label>
+                        <input type="text" id="contact-user-name" required placeholder="Enter name...">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="contact-user-email" required placeholder="name@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Detailed Message Context</label>
+                        <textarea id="contact-user-message" rows="4" required placeholder="Write your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="auth-action-btn">Transmit Secure Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sliding Sidebar Checkout Container Layout Panel Bag -->
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
             <h3>Your Bag</h3>
@@ -68,8 +123,9 @@
         </div>
         <div class="cart-items" id="cart-items-container"></div>
         
+        <!-- Promo Coupon Input Data Framework Engine Section Grid -->
         <div class="promo-container">
-            <input type="text" id="coupon-code-input" placeholder="Enter Promo Code (LUXORA20)">
+            <input type="text" id="coupon-code-input" placeholder="Promo: LUXORA10, LUXORA15, LUXORA20, LUXORA50">
             <button id="apply-coupon-btn">Apply</button>
         </div>
         <p id="promo-msg-feedback"></p>
@@ -80,41 +136,43 @@
                 <span id="cart-subtotal-price">$0.00</span>
             </div>
             <div class="cart-total-box discount-line" style="display: none; color: #2ec4b6;">
-                <span>Discount Applied:</span>
+                <span>Discount Balance Applied:</span>
                 <span id="cart-discount-value">-$0.00</span>
             </div>
             <div class="cart-total-box final-total-line">
-                <span>Total Amount:</span>
+                <span>Total Amount Payable:</span>
                 <span id="cart-total-price">$0.00</span>
             </div>
-            <button class="checkout-btn" id="checkout-trigger-btn">Proceed to Checkout</button>
+            <button class="checkout-btn" id="checkout-trigger-btn">Proceed to Gateway Checkout</button>
         </div>
     </div>
     <div class="cart-overlay" id="cart-overlay"></div>
 
+    <!-- Wishlist Storage Drawer Logic Frame Slider Component -->
     <div class="wishlist-sidebar" id="wishlist-sidebar">
         <div class="cart-header">
-            <h3>Your Wishlist</h3>
+            <h3>Your Wishlist Catalog</h3>
             <div class="close-cart" id="close-wishlist"><i class="fas fa-times"></i></div>
         </div>
         <div class="cart-items" id="wishlist-items-container"></div>
     </div>
 
+    <!-- Product Quick View Modal Panel Box Architecture Layout UI Frame -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal-box">
             <div class="close-modal" id="close-modal"><i class="fas fa-times"></i></div>
             <div class="modal-body">
                 <div class="modal-img-wrap">
-                    <img id="modal-img" src="" alt="Modal View">
+                    <img id="modal-img" src="" alt="Modal Detail Product Representation Render Layer">
                 </div>
                 <div class="modal-details">
                     <span class="modal-tag" id="modal-category">Category</span>
-                    <h2 id="modal-title">Product Title</h2>
+                    <h2 id="modal-title">Product Catalog Title</h2>
                     <p class="modal-price" id="modal-price">$0.00</p>
-                    <p class="modal-desc" id="modal-desc">Exclusive description goes here...</p>
+                    <p class="modal-desc" id="modal-desc">Exclusive item descriptions parameter tracking...</p>
                     
                     <div class="modal-reviews-section">
-                        <h4>Product Ratings & Reviews</h4>
+                        <h4>Product User Evaluations</h4>
                         <div class="interactive-stars" id="interactive-star-row">
                             <i class="far fa-star" data-rating="1"></i>
                             <i class="far fa-star" data-rating="2"></i>
@@ -125,106 +183,194 @@
                         </div>
                         <div class="reviews-list-container" id="modal-reviews-list"></div>
                     </div>
-                    
                     <button class="btn" id="modal-add-btn">Add to Bag</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Authentication Gate Modular Panel Form Suite Layout View -->
     <div class="auth-overlay" id="auth-overlay">
         <div class="auth-modal-box">
             <div class="close-auth" id="close-auth"><i class="fas fa-times"></i></div>
             
             <div id="auth-login-card">
                 <h2>Welcome Back</h2>
-                <p class="auth-subtitle">Login to secure your universal synchronized cart access.</p>
+                <p class="auth-subtitle">Login to secure synchronized user session parameters.</p>
                 <form id="login-form" onsubmit="executeMockLogin(event)">
                     <div class="form-group">
                         <label>Email Address</label>
                         <input type="email" id="login-email" required placeholder="name@domain.com">
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
+                        <label>Password Context</label>
                         <input type="password" id="login-pass" required placeholder="••••••••">
                     </div>
-                    <button type="submit" class="auth-action-btn">Sign In</button>
+                    <button type="submit" class="auth-action-btn">Sign In Access Signature</button>
                 </form>
-                <p class="switch-auth-link">New to Luxora? <span onclick="toggleAuthCards(true)">Create Account</span></p>
+                <p class="switch-auth-link">New User? <span onclick="toggleAuthCards(true)">Create Elite Account</span></p>
             </div>
 
             <div id="auth-signup-card" style="display: none;">
-                <h2>Create Elite Account</h2>
+                <h2>Create Account Registry</h2>
                 <p class="auth-subtitle">Join the secure modern premium network catalog tier.</p>
                 <form id="signup-form" onsubmit="executeMockSignup(event)">
                     <div class="form-group">
-                        <label>Full Name</label>
+                        <label>User Registration Name</label>
                         <input type="text" id="signup-name" required placeholder="Arfin Das">
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Contact Number</label>
+                        <input type="tel" id="signup-phone" required placeholder="e.g. 9876543210">
                     </div>
                     <div class="form-group">
                         <label>Email Address</label>
                         <input type="email" id="signup-email" required placeholder="name@domain.com">
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="signup-pass" required placeholder="Minimum 6 characters">
-                    </div>
-                    <button type="submit" class="auth-action-btn">Register Account</button>
+                    <button type="submit" class="auth-action-btn">Register Secure Account</button>
                 </form>
                 <p class="switch-auth-link">Already a member? <span onclick="toggleAuthCards(false)">Sign In</span></p>
             </div>
         </div>
     </div>
 
+    <!-- Multi-stage Gateway Checkout Matrix Layout Overlay UI View -->
     <div class="payment-overlay" id="payment-overlay">
-        <div class="payment-modal-box">
-            <div class="close-payment" id="close-payment"><i class="fas fa-times"></i></div>
+        <div class="payment-modal-box" id="print-area-invoice-container-target">
+            <div class="close-payment no-print" id="close-payment"><i class="fas fa-times"></i></div>
             
-            <div id="payment-step-form">
-                <h2>Secure Gateway Checkout</h2>
-                <p class="payment-subtitle">Complete your transaction using our simulated premium gateway.</p>
-                <div class="payment-summary-pill">
-                    Amount Payable: <span id="payment-payable-amount">$0.00</span>
-                </div>
+            <!-- Step 1: Input Checkout Data Framework Matrix Form -->
+            <div id="payment-step-form" class="no-print">
+                <h2>Secure System Gateway Payment</h2>
+                <p class="payment-subtitle">Complete simulated financial processing verification vectors.</p>
+                <div class="payment-summary-pill">Amount Due: <span id="payment-payable-amount">$0.00</span></div>
                 <form id="fake-checkout-form" onsubmit="handleFakePayment(event)">
                     <div class="form-group">
-                        <label>Cardholder Name</label>
-                        <input type="text" required placeholder="Arfin Das">
+                        <label>Shipping / Billing Real Address</label>
+                        <input type="text" id="payment-shipping-address" required placeholder="Enter absolute physical home address location...">
                     </div>
                     <div class="form-group">
-                        <label>Card Number</label>
-                        <input type="text" maxlength="19" required placeholder="4111 2222 3333 4444">
+                        <label>Simulated Cardholder Verification Name</label>
+                        <input type="text" id="payment-card-name" required placeholder="Arfin Das">
+                    </div>
+                    <div class="form-group">
+                        <label>Dummy Simulated Card Tokens String</label>
+                        <input type="text" id="payment-card-number" maxlength="19" required placeholder="4111 2222 3333 4444">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Expiry Date</label>
+                            <label>Expiry Grid</label>
                             <input type="text" maxlength="5" required placeholder="MM/YY">
                         </div>
                         <div class="form-group">
-                            <label>CVV</label>
+                            <label>CVV Tokens</label>
                             <input type="password" maxlength="3" required placeholder="***">
                         </div>
                     </div>
-                    <button type="submit" class="pay-now-btn">Pay Mock Amount</button>
+                    <button type="submit" class="pay-now-btn">Execute Mock Clearance Order</button>
                 </form>
             </div>
 
-            <div id="payment-step-processing" class="payment-state-view" style="display: none;">
+            <!-- Step 2: Processing Matrix Animation View -->
+            <div id="payment-step-processing" class="payment-state-view no-print" style="display: none;">
                 <div class="spinner"></div>
-                <h3>Authorizing Secure Funds...</h3>
-                <p>Connecting with node bank gateway simulation modules.</p>
+                <h3>Authorizing Secure Funds Pipeline Node...</h3>
+                <p>Please hold grid terminal open configuration.</p>
             </div>
 
+            <!-- Step 3: Success Screen Content Panel Containing Elegant Print Invoice Interface Layer -->
             <div id="payment-step-success" class="payment-state-view" style="display: none;">
-                <div class="success-icon-wrap"><i class="fas fa-check-circle"></i></div>
-                <h3>Transaction Success!</h3>
-                <p>Order authorized successfully. Your dynamic localStorage cart bag has been reset.</p>
-                <button class="btn text-center" onclick="resetPaymentSystemState()">Continue Shopping</button>
+                <div class="success-icon-wrap no-print"><i class="fas fa-check-circle"></i></div>
+                <h3 class="no-print">Transaction Success!</h3>
+                <p class="no-print" style="margin-bottom:20px;">Order pipeline completed. Dynamic token parameters synced.</p>
+                
+                <!-- Premium Master Invoice Design Card Dynamic Layout Engine Box -->
+                <div class="premium-invoice-card-wrapper" id="live-invoice-markup-injector-node">
+                    <!-- Dynamic JavaScript Node Content Injected Automatically Here -->
+                </div>
+
+                <div class="invoice-action-button-row no-print" style="margin-top:25px; display:flex; gap:15px; justify-content:center;">
+                    <button class="btn print-invoice-trigger-btn" onclick="executeSystemInvoicePrintAction()"><i class="fas fa-print"></i> Print / Download Invoice</button>
+                    <button class="btn btn-secondary-variant" onclick="resetPaymentSystemState()">Continue Shopping</button>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Admin Panel Security Portal Verification Overlay Module Form Suite Box View -->
+    <div class="admin-auth-overlay" id="admin-auth-gate-overlay">
+        <div class="auth-modal-box">
+            <div class="close-auth" id="close-admin-auth"><i class="fas fa-times"></i></div>
+            <h2>Admin Guard Authorization</h2>
+            <p class="auth-subtitle">Protected zone node area access routing terminal.</p>
+            <form id="admin-login-credential-form" onsubmit="verifyAdminAuthTokenGate(event)">
+                <div class="form-group">
+                    <label>Admin System ID Name</label>
+                    <input type="text" id="admin-username-field" required placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label>Security Gate Password Matrix</label>
+                    <input type="password" id="admin-password-field" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="auth-action-btn">Request Access Signature</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Protected Master Enterprise Manager Core Admin Dashboard Workspace Canvas Panel -->
+    <div class="admin-dashboard-canvas-overlay" id="admin-master-dashboard-canvas">
+        <div class="admin-canvas-container">
+            <div class="admin-canvas-header">
+                <h2><i class="fas fa-toolbox"></i> Luxora Central Operations Admin Node Console Panel Dashboard</h2>
+                <button class="close-admin-canvas" id="exit-admin-canvas-btn"><i class="fas fa-sign-out-alt"></i> Exit Node</button>
+            </div>
+            
+            <div class="admin-grid-layout-split">
+                <!-- Registered Client Profiles Table Matrix Framework Layer View Box -->
+                <div class="admin-panel-card-table-block">
+                    <h3>Synchronized Users Core Registration Registry Database</h3>
+                    <div class="table-scroll-wrap">
+                        <table class="admin-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Register Name</th>
+                                    <th>User Email Identity</th>
+                                    <th>Linked Contact Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-user-rows-injected-node">
+                                <!-- Dynamic Triggers Injected Automatically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Global Order Matrix Analytics Table View Panel Canvas Layer System Grid -->
+                <div class="admin-panel-card-table-block">
+                    <h3>Financial Operations Live Invoice Transaction Pipeline Logs</h3>
+                    <div class="table-scroll-wrap">
+                        <table class="admin-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Tracking Reference Token ID</th>
+                                    <th>Client Target</th>
+                                    <th>Paid Total Value</th>
+                                    <th>Action Node Controls</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-invoice-rows-injected-node">
+                                <!-- Dynamic Triggers Injected Automatically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS Script Engine -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom Control Script Engine Module Logic Framework Layer -->
     <script src="script.js"></script>
 </body>
 </html>
