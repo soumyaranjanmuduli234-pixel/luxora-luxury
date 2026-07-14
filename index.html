@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxora Premium | Elite E-Commerce</title>
+    <title>Luxora Premium | Elite Security Suite</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -14,12 +14,13 @@
     <header>
         <div class="navbar">
             <div class="logo">Luxora<span>.</span></div>
-            <nav class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#shop">Shop</a>
-            </nav>
             <div class="nav-icons">
                 <div class="theme-toggle" id="theme-btn"><i class="fas fa-moon"></i></div>
+                <div class="auth-icon" id="auth-btn-trigger"><i class="far fa-user"></i> <span id="user-status-text">Login</span></div>
+                <div class="wishlist-icon" id="wishlist-btn-trigger">
+                    <i class="far fa-heart"></i>
+                    <span class="wishlist-count">0</span>
+                </div>
                 <div class="cart-icon" id="cart-btn">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count">0</span>
@@ -30,7 +31,7 @@
 
     <section id="home" class="hero">
         <div class="hero-content" data-aos="fade-right" data-aos-duration="1200">
-            <span class="hero-tagline">New Season Collection 2026</span>
+            <span class="hero-tagline">Secure Premium Platform 2026</span>
             <h1>Redefining Modern Luxury</h1>
             <p>Explore an elite curation of fashion statements crafted for those who command presence wherever they step.</p>
             <a href="#shop" class="btn">Explore Shop <i class="fas fa-arrow-right"></i></a>
@@ -66,8 +67,23 @@
             <div class="close-cart" id="close-cart"><i class="fas fa-times"></i></div>
         </div>
         <div class="cart-items" id="cart-items-container"></div>
+        
+        <div class="promo-container">
+            <input type="text" id="coupon-code-input" placeholder="Enter Promo Code (LUXORA20)">
+            <button id="apply-coupon-btn">Apply</button>
+        </div>
+        <p id="promo-msg-feedback"></p>
+
         <div class="cart-footer">
-            <div class="cart-total-box">
+            <div class="cart-total-box subtotal-line">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal-price">$0.00</span>
+            </div>
+            <div class="cart-total-box discount-line" style="display: none; color: #2ec4b6;">
+                <span>Discount Applied:</span>
+                <span id="cart-discount-value">-$0.00</span>
+            </div>
+            <div class="cart-total-box final-total-line">
                 <span>Total Amount:</span>
                 <span id="cart-total-price">$0.00</span>
             </div>
@@ -75,6 +91,14 @@
         </div>
     </div>
     <div class="cart-overlay" id="cart-overlay"></div>
+
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="cart-header">
+            <h3>Your Wishlist</h3>
+            <div class="close-cart" id="close-wishlist"><i class="fas fa-times"></i></div>
+        </div>
+        <div class="cart-items" id="wishlist-items-container"></div>
+    </div>
 
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal-box">
@@ -88,8 +112,66 @@
                     <h2 id="modal-title">Product Title</h2>
                     <p class="modal-price" id="modal-price">$0.00</p>
                     <p class="modal-desc" id="modal-desc">Exclusive description goes here...</p>
+                    
+                    <div class="modal-reviews-section">
+                        <h4>Product Ratings & Reviews</h4>
+                        <div class="interactive-stars" id="interactive-star-row">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                            <span id="rating-numerical-status">(0.0 / 5)</span>
+                        </div>
+                        <div class="reviews-list-container" id="modal-reviews-list"></div>
+                    </div>
+                    
                     <button class="btn" id="modal-add-btn">Add to Bag</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-overlay" id="auth-overlay">
+        <div class="auth-modal-box">
+            <div class="close-auth" id="close-auth"><i class="fas fa-times"></i></div>
+            
+            <div id="auth-login-card">
+                <h2>Welcome Back</h2>
+                <p class="auth-subtitle">Login to secure your universal synchronized cart access.</p>
+                <form id="login-form" onsubmit="executeMockLogin(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="login-email" required placeholder="name@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="login-pass" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="auth-action-btn">Sign In</button>
+                </form>
+                <p class="switch-auth-link">New to Luxora? <span onclick="toggleAuthCards(true)">Create Account</span></p>
+            </div>
+
+            <div id="auth-signup-card" style="display: none;">
+                <h2>Create Elite Account</h2>
+                <p class="auth-subtitle">Join the secure modern premium network catalog tier.</p>
+                <form id="signup-form" onsubmit="executeMockSignup(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="signup-name" required placeholder="Arfin Das">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="signup-email" required placeholder="name@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="signup-pass" required placeholder="Minimum 6 characters">
+                    </div>
+                    <button type="submit" class="auth-action-btn">Register Account</button>
+                </form>
+                <p class="switch-auth-link">Already a member? <span onclick="toggleAuthCards(false)">Sign In</span></p>
             </div>
         </div>
     </div>
