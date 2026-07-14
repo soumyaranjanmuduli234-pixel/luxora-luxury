@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxora Premium | Elite E-Commerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme"> <header>
+        <div class="navbar">
+            <div class="logo">Luxora<span>.</span></div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#shop">Shop</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="nav-icons">
+                <div class="theme-toggle" id="theme-btn">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="cart-icon" id="cart-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="1200">
+            <span class="hero-tagline">New Season Collection 2026</span>
+            <h1>Redefining Modern Luxury</h1>
+            <p>Explore an elite curation of fashion statements crafted for those who command presence wherever they step.</p>
+            <a href="#shop" class="btn">Explore Shop <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-image" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="glow-circle"></div>
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600&auto=format&fit=crop" alt="Hero Model">
+        </div>
+    </section>
+
+    <section id="shop" class="products-section">
+        <h2 class="section-title" data-aos="fade-up">Curated Collection</h2>
+        
+        <div class="controls-container" data-aos="fade-up">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search elite products...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="jacket">Jackets</button>
+                <button class="filter-btn" data-filter="sneakers">Sneakers</button>
+                <button class="filter-btn" data-filter="accessory">Accessories</button>
+            </div>
+        </div>
+
+        <div class="product-grid" id="product-container">
+            </div>
+    </section>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Bag</h3>
+            <div class="close-cart" id="close-cart"><i class="fas fa-times"></i></div>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            </div>
+        <div class="cart-footer">
+            <div class="cart-total-box">
+                <span>Total Amount:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+            <div class="close-modal" id="close-modal"><i class="fas fa-times"></i></div>
+            <div class="modal-body">
+                <div class="modal-img-wrap">
+                    <img id="modal-img" src="" alt="Modal View">
+                </div>
+                <div class="modal-details">
+                    <span class="modal-tag" id="modal-category">Category</span>
+                    <h2 id="modal-title">Product Title</h2>
+                    <p class="modal-price" id="modal-price">$0.00</p>
+                    <p class="modal-desc" id="modal-desc">Exclusive description goes here...</p>
+                    <button class="btn" id="modal-add-btn">Add to Bag</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
